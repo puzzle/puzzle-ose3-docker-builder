@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+	<servers>
+		<server>
+			<id>puzzle-releases</id>
+			<username>${env.ARTIFACTORY_USER}</username>
+			<password>${env.ARTIFACTORY_PASSWORD}</password>
+		</server>
+		<server>
+			<id>puzzle-snapshots</id>
+			<username>${env.ARTIFACTORY_USER}</username>
+			<password>${env.ARTIFACTORY_PASSWORD}</password>
+		</server>
+	</servers>
+
+  <profiles>
+    <profile>
+      <id>artifactory</id>
+	<repositories>
+		<repository>
+			<id>central</id>
+			<name>Maven Central Repository Europe</name>
+			<url>http://uk.maven.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>puzzle-releases</id>
+			<url>https://artifactory.puzzle.ch/artifactory/libs-release</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>http://uk.maven.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+		</pluginRepository>
+		<pluginRepository>
+			<id>puzzle-releases</id>
+			<name>plugins-release</name>
+			<url>https://artifactory.puzzle.ch/artifactory/plugins-release</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+  </profile>
+  </profiles>
+
+	<activeProfiles>
+    <activeProfile>artifactory</activeProfile>
+	</activeProfiles>
+
+</settings>

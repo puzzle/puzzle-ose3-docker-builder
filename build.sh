@@ -40,6 +40,10 @@ if [ -n "${SOURCE_REF}" ]; then
       exit 1
     fi
   fi
+
+  mvn -q org.apache.maven.plugins:maven-dependency-plugin:2.10:copy -Dartifact="${ARTIFACT}" -DoutputDirectory=deployments
+  mv deployments/*.war deployments/ROOT.war
+
   popd
   docker build --rm -t "${TAG}" "${BUILD_DIR}"
 else
